@@ -1,6 +1,6 @@
-FROM --platform=linux/x86_64 node:16.6.1 AS yarn
+FROM node:16.6.1 AS yarn
 
-FROM --platform=linux/x86_64 ruby:2.6.5
+FROM ruby:2.6.5
 COPY --from=yarn /usr/local/bin/node /usr/local/bin/
 COPY --from=yarn /opt/yarn-v1.22.5 /opt/yarn
 RUN    ln -s /opt/yarn/bin/yarn    /usr/local/bin/yarn \
