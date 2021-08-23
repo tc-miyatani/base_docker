@@ -17,8 +17,8 @@ ENV app_path /myapp
 
 RUN mkdir ${app_path}
 WORKDIR   ${app_path}
-COPY ./myapp/Gemfile      ${app_path}/Gemfile
-COPY ./myapp/Gemfile.lock ${app_path}/Gemfile.lock
+COPY ./Gemfile      ${app_path}/Gemfile
+COPY ./Gemfile.lock ${app_path}/Gemfile.lock
 RUN bundle install \
     && rm ${app_path}/Gemfile \
     && rm ${app_path}/Gemfile.lock
