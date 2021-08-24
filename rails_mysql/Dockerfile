@@ -1,4 +1,4 @@
-FROM node:16.6.1 AS yarn
+FROM node:14.17.5 AS yarn
 
 FROM ruby:2.6.5
 COPY --from=yarn /usr/local/bin/node /usr/local/bin/
@@ -19,6 +19,19 @@ RUN mkdir ${app_path}
 WORKDIR   ${app_path}
 COPY ./Gemfile      ${app_path}/Gemfile
 COPY ./Gemfile.lock ${app_path}/Gemfile.lock
-RUN bundle install \
-    && rm ${app_path}/Gemfile \
-    && rm ${app_path}/Gemfile.lock
+# RUN bundle install \
+#     # && yarn remove -D node-sass \
+#     # && apt install python make g++ \
+#     # && yarn add node-gyp \
+#     && yarn add sass fibers \ 
+#     && yarn add -D node-sass@4.14.0 \
+#     && yarn install \
+#     && rm ${app_path}/Gemfile \
+#     && rm ${app_path}/Gemfile.lock
+
+RUN bundle install
+RUN yarn add -D node-sass@4.14.0
+RUN yarn add sass
+# RUN yarn add fibers
+RUN yarn install
+
